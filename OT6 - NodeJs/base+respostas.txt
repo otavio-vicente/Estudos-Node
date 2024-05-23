@@ -1,0 +1,76 @@
+//carregando o express
+const express = require("express");
+//instancio o express e carregando a biblioteca do express dentro dessa const app
+const app = express();
+
+//Lista de Games
+
+let games = [
+    {title: "Sea of Thieves", studio: "Rare", price: 30},
+    {title: "WOW", studio: "Blizzard", price: 120},
+    {title: "Valorant", studio: "Riot", price: 0},
+    {title: "COD", studio: "Activision", price: 200},
+    {title: "Minecraft", studio: "Mojang", price: 80},
+    {title: "Halo", studio: "Microsoft", price: 90},
+    {title: "GTA 5", studio: "Rockstar", price: 150},
+    {title: "Red Dead 2", studio: "Rockstar", price: 150},
+    {title: "CyberPunk", studio: "CD Projekt Red", price: 250},
+    {title: "Resident Evil 4", studio: "Capcom", price: 200}
+]
+
+app.listen(3080,() => {
+    console.log("Servidor rodando!");
+})
+
+app.get("/", (req, res) => {
+    res.json(games);
+})
+app.use(express.json());
+
+app.post("/novogame", (req, res) => {
+    let title = req.body.title;
+    let studio = req.body.studio;
+    let price = req.body.price;
+
+    console.log(title);
+    console.log(studio);
+    console.log(price);
+
+    let newGame = { title: title, studio: studio, price: price }
+
+    res.send("OK");
+});
+
+let newGame = { title, studio, price }
+//para enviar estes dados para o array agora utilizamos o método push do JS
+games.push(newGame);
+
+1- O que é Node.js e por que é popular no desenvolvimento web?
+Node.js é um ambiente de tempo de execução JavaScript que permite que você execute código JavaScript no lado do servidor. Ele é popular no desenvolvimento web devido à sua natureza orientada a eventos e assíncrona, que o torna eficiente para lidar com um grande número de solicitações simultâneas. Além disso, o ecossistema do Node.js é rico em módulos e ferramentas que facilitam o desenvolvimento de aplicativos web escaláveis e de alto desempenho.
+
+2- Qual é a diferença entre o Node.js e outras tecnologias de servidor, como o Apache?
+Enquanto o Apache é um servidor HTTP tradicional que utiliza a linguagem C para processar solicitações, o Node.js é um ambiente de tempo de execução JavaScript baseado no motor V8 do Google Chrome. Uma das principais diferenças é que o Node.js é orientado a eventos e assíncrono, o que o torna mais eficiente em lidar com muitas conexões simultâneas e operações de I/O de longa duração.
+
+3- Como você inicia um projeto Node.js usando o npm?
+Para iniciar um projeto Node.js usando npm, você pode navegar até o diretório do seu projeto e executar o comando npm init. Isso iniciará um assistente interativo que guiará você na criação de um arquivo package.json, que é usado para gerenciar as dependências e configurações do seu projeto.
+
+4- O que é o Express.js e qual é o seu papel no desenvolvimento web com Node.js?
+Express.js é um framework web para Node.js que simplifica o processo de criação de aplicativos web. Ele fornece uma camada fina sobre o core do Node.js, oferecendo uma série de utilitários e middleware que facilitam a criação de APIs e aplicativos web robustos e escaláveis.
+
+5- Explique o conceito de middleware no contexto do Express.js.
+Middleware no Express.js são funções que têm acesso tanto ao objeto de solicitação (req) quanto ao objeto de resposta (res). Eles podem executar tarefas como processar dados de solicitação, executar autenticação, manipular erros e muito mais. O middleware pode ser adicionado a uma rota específica ou globalmente a todas as rotas.
+
+6- Como você roteia solicitações HTTP em um aplicativo Express?
+Em um aplicativo Express, você roteia solicitações HTTP usando o método correspondente ao verbo HTTP (como GET, POST, PUT, DELETE, etc.) junto com o caminho da URL e uma função de callback que manipula a solicitação e envia uma resposta.
+
+7- O que é o middleware de análise de corpo (body-parser) e por que é útil em um aplicativo Express?
+O middleware de análise de corpo, como o body-parser, é usado para analisar o corpo das solicitações HTTP, especialmente quando elas contêm dados do formulário ou JSON. É útil em um aplicativo Express porque simplifica o processo de extração e manipulação de dados enviados pelo cliente.
+
+8- Quais são os principais métodos HTTP e como eles são usados em rotas Express?
+Os principais métodos HTTP são GET, POST, PUT, DELETE, PATCH, OPTIONS, HEAD, e TRACE. No Express, você pode criar rotas usando esses métodos junto com o caminho da URL para definir as operações que o servidor deve executar quando uma solicitação com o método e o caminho específicos é recebida.
+
+9- Como você lida com erros em um aplicativo Express?
+No Express, você pode lidar com erros usando middleware especializado para tratamento de erros, como middleware de tratamento de erros globais ou middleware de manipulação de erros para rotas específicas. Isso permite que você capture e responda adequadamente a erros que ocorrem durante o processamento de solicitações.
+
+10- O que é uma API RESTful e como o Express pode ser usado para criar uma?
+Uma API RESTful é uma arquitetura de software que usa princípios REST (Representational State Transfer) para expor funcionalidades através de endpoints HTTP. No Express, você pode criar uma API RESTful definindo rotas que correspondam a operações CRUD (Create, Read, Update, Delete) em recursos, e manipulando solicitações HTTP correspondentes a essas rotas para executar as operações necessárias no servidor.
