@@ -18,10 +18,7 @@ let games = [
     {title: "FIFA", studio: "Electronic Arts", price: 200},
 ]
 
- app.listen(3080, () =>{
-     console.log("Servidor rodando!");
- })
-
+ 
 // app.get("/", (req, res) => {
 //     res.send("Olá mundo!");
 // })
@@ -62,3 +59,8 @@ app.delete("/:index", (req, res) =>{
     games.splice(index,1);
     return res.json({message: "O Jogo foi deletado "});
 })
+
+app.listen(3080, () =>{
+     console.log("Servidor rodando!");
+ })
+
