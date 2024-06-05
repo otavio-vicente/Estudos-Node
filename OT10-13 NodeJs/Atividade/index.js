@@ -19,14 +19,15 @@ let games = [
 ]
 
 const buscarJogoPorNome = (nomeJogo) => {
-    return games.filter(jogo => jogo.nome.toLowerCase().includes(nomeJogo.toLowerCase()));
+   // return jogo.nome.toLowerCase().includes(nome.toLowerCase());
+    return games.filter(jogo => jogo.title.toLowerCase().includes(nomeJogo.toLowerCase()));
 }
 
 // app.get("/", (req, res) => {
 //     res.send("Olá mundo!");
 // })
 
-app.get("/", (req, res) => {
+app.get("/games", (req, res) => {
     const nomeJogo = req.query.busca;
     const resultado = nomeJogo ? buscarJogoPorNome(nomeJogo) : games;
     if(resultado.length > 0){
