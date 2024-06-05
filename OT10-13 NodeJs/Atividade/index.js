@@ -6,16 +6,16 @@ const app = express();
 //Lista de games
 
 let games = [
-    {title: "Sea of Thieves", studio: "Rare", price: 30},
-    {title: "WOW", studio: "Blizzard", price: 120},
-    {title: "Valorant", studio: "Riot", price: 0},
-    {title: "COD", studio: "Activision", price: 200},
-    {title: "Minecraft", studio: "Mojang", price: 80},
-    {title: "Halo", studio: "Microsoft", price: 90},
-    {title: "CS2", studio: "Valve", price: 100},
-    {title: "Rocket League", studio: "Psyonix", price: 80},
-    {title: "Farcry", studio: "Ubisoft Montreal", price: 140},
-    {title: "FIFA", studio: "Electronic Arts", price: 200},
+    {title: "Sea of Thieves", studio: "Rare", price: 30, id: 1},
+    {title: "WOW", studio: "Blizzard", price: 120, id: 2},
+    {title: "Valorant", studio: "Riot", price: 0, id: 3},
+    {title: "COD", studio: "Activision", price: 200, id: 4},
+    {title: "Minecraft", studio: "Mojang", price: 80, id: 5},
+    {title: "Halo", studio: "Microsoft", price: 90, id: 6},
+    {title: "CS2", studio: "Valve", price: 100, id: 7},
+    {title: "Rocket League", studio: "Psyonix", price: 80, id: 8},
+    {title: "Farcry", studio: "Ubisoft Montreal", price: 140, id: 9},
+    {title: "FIFA", studio: "Electronic Arts", price: 200, id: 10},
 ]
 
 const buscarJogoPorNome = (nomeJogo) => {
@@ -37,8 +37,6 @@ app.get("/", (req, res) => {
     //res.json(games);
 })
 
-
-
 app.post("/novogame", (req, res) =>{
     let title = req.body.title;
     let studio = req.body.studio;
@@ -52,7 +50,7 @@ app.post("/novogame", (req, res) =>{
 })
 
 //att um curso
-app.put('/novogame/:idjogo', (req, res) =>{
+app.get('/:idjogo', (req, res) =>{
     const idJOGO = parseInt(req.params.idjogo);
     let mensagemErro = '';
     let jogo;
@@ -79,6 +77,17 @@ app.put('/novogame/:idjogo', (req, res) =>{
     //     games[index] = {title, studio, price};
 
     // return res.json(games);
+})
+
+app.put('/novogame/:index', (req, res) =>{
+    const { index } = req.params;
+    let title = req.body.title;
+    let studio = req.body.studio;
+    let price = req.body.price;
+
+        games[index] = {title, studio, price};
+
+    return res.json(games);
 })
 
 app.delete("/:index", (req, res) =>{

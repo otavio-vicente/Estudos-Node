@@ -1,10 +1,11 @@
 import express from 'express';
 import colecaoUf from './dados/dados.js';
+//Imports das bibliotecas
 
-const app = express();
+const app = express(); //Chama o express
 
 const buscarUfsPorNome = (nomeUf) => {
-    return colecaoUf.filter(uf => uf.nome.toLowerCase().includes(nomeUf.toLowerCase()));
+    return colecaoUf.filter(uf => uf.nome.toLowerCase().includes(nomeUf.toLowerCase())); //Método para buscar a UF através de letras
 }
 
 app.get('/ufs', (req, res) => {
